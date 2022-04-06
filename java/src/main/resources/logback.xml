@@ -1,0 +1,43 @@
+<configuration debug="false">
+
+    <property name="HOME" value="." />
+
+    <appender name="FILE-THREAD" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <!-- This is MDC value -->
+        <!-- We will assign a value to 'logFileName' via Java code -->
+        <discriminator>
+            <key>logFileName</key>
+            <defaultValue>main</defaultValue>
+        </discriminator>
+
+        <sift>
+            <appender name="FILE-${logFileName}" class="ch.qos.logback.core.FileAppender">
+                <param name="Append" value="false"/>
+                <file>${HOME}/logs/threads/${logFileName}.log</file>
+                <encoder>
+                    <pattern>%date %-5level [%-4thread] %-42logger{10}:%-3line - %msg%n</pattern>
+                </encoder>
+            </appender>
+
+        </sift>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <param name="Append" value="false"/>
+        <file>${HOME}/logs/all.log</file>
+        <encoder>
+            <pattern>%date %-5level [%-4thread] %-42logger{10}:%-3line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %-5level [%-4thread] %-42logger{10}:%-3line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="FILE-THREAD"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

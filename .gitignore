@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# Videos
+*.mp4
+
 # Log file
 *.log
 
@@ -21,3 +24,33 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# JetBrains
+*/.idea/*
+*.iml
+
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+/.idea/
+/lib/
+/cmake-build-debug/
+/target/
+
+Concurrent Programming/Assignments/barbershop/target/
+
+Formal Programming/Assignments/Formal Specifications/Rodin/.metadata/
+
+Concurrent Programming/Assignments/matrices/C/.idea/
+
+Concurrent Programming/Assignments/matrices/C/build/
+
+java/target/
+
+C/build/
