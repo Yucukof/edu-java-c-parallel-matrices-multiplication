@@ -18,27 +18,30 @@ import static org.dcu.student.sem2.ca670.algorithms.Algorithm.*;
 public class MultiplicationTestByMatrix {
 
     private final Algorithm algorithm;
+    private final boolean skip;
 
-    public MultiplicationTestByMatrix(final Algorithm algorithm) {
+    public MultiplicationTestByMatrix(final Algorithm algorithm, final boolean skip) {
         log.info("Performing Matrices Multiplication Test...");
         log.warn("Selected algorithm: {}", algorithm.getName());
         this.algorithm = algorithm;
+        this.skip = skip;
     }
 
     @Parameterized.Parameters
     public static List<Object[]> primeNumbers() {
         return Arrays.asList(new Object[][]{
-              {SEQUENTIAL},
-              {STRIPE},
-              {STREAM},
-              {REDUCE}
+              {SEQUENTIAL, false},
+              {STRIPE, false},
+              {STREAM, false},
+              {FORK_JOIN, true},
+              {REDUCE, true}
         });
     }
 
     @Test
     public void given_gigantic_matrices_when_multiply_then_expect_correct_result() {
 
-        if (algorithm == REDUCE) {
+        if (skip) {
             log.warn("Skipping test");
             return;
         }
@@ -115,7 +118,7 @@ public class MultiplicationTestByMatrix {
     @Test
     public void given_nightmarish_matrices_when_multiply_then_expect_correct_result() {
 
-        if (algorithm == REDUCE) {
+        if (skip) {
             log.warn("Skipping test");
             return;
         }

@@ -62,6 +62,27 @@ public class MultiplicationTestByAlgorithm {
     }
 
     @Test
+    public void given_the_FORKJOIN_algorithm_when_multiply_then_expect_correct_result() {
+
+        log.info("Setting up...");
+        final Matrix A = MatrixLoader.from(name.concat("A"));
+        if (detailed) A.print();
+
+        final Matrix B = MatrixLoader.from(name.concat("B"));
+        if (detailed) B.print();
+
+        final Matrix product = FORK_JOIN.multiply(A, B);
+
+        assertThat(product).isNotNull();
+        if (detailed) product.print();
+
+        final Matrix C = MatrixLoader.from(name.concat("C"));
+        if (detailed) C.print();
+
+        assertThat(product.matches(C)).isTrue();
+    }
+
+    @Test
     public void given_the_SEQUENTIAL_algorithm_when_multiply_then_expect_correct_result() {
 
         log.info("Setting up...");

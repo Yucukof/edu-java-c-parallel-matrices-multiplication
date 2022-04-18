@@ -29,6 +29,10 @@ public enum Algorithm {
     /**
      * A revised version of the simple parallel algorithm computing stripes concurrently, using Java Streams.
      */
+    FORK_JOIN("Java Fork/Join parallelism", new ParallelForkJoinMatrixMultiplication()),
+    /**
+     * A revised version of the simple parallel algorithm computing stripes concurrently, using Java Streams.
+     */
     STREAM("Java Streams parallelism", new ParallelStreamMatrixMultiplication());
 
     /**
